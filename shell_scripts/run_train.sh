@@ -1,5 +1,5 @@
 NUM_GPU=4
-GPU_IDS="0,1,2,3"
+GPU_IDS="4,5,6,7"
 export OMP_NUM_THREADS=8
 vision_model_name_or_path="microsoft/swinv2-large-patch4-window12to24-192to384-22kto1k-ft"
 text_model_name_or_path="snunlp/KR-BERT-char16424"
@@ -26,9 +26,9 @@ python -m torch.distributed.launch --nproc_per_node $NUM_GPU train.py \
     --load_best_model_at_end \
     --learning_rate 5e-5 \
     --dataloader_num_workers "8" \
-    --wandb_project "dacon_kyowon" \
+    --wandb_project "tmoji-trocr" \
     --wandb_name "${i}-sv2bc-Augmentator(0.8-0.5 window12to24-192to384)" \
-    --wandb_entity "tadev" \
+    --wandb_entity "ea3124-pusan-national-university" \
     --label_names "labels" \
     --metric_for_best_model "accuracy" \
     --ddp_find_unused_parameters "True" \

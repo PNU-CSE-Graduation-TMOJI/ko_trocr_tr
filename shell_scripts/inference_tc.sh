@@ -14,7 +14,7 @@
 #     --result_csv_path "sub/12.csv"
 
 
-CUDA_VISIBLE_DEVICES=7 python inference.py \
+CUDA_VISIBLE_DEVICES=7 python inference_tc.py \
     --output_dir "sub" \
     --seed 42 \
     --test_csv_path "data/preprocess/test.csv" \

@@ -1,6 +1,7 @@
 import logging
 import os
 from functools import partial
+import sys
 
 from setproctitle import setproctitle
 from transformers import (
@@ -167,7 +168,8 @@ def main(model_args: ModelArguments, dataset_args: DatasetsArguments, training_a
 
 if __name__ == "__main__":
     parser = HfArgumentParser((ModelArguments, DatasetsArguments, MyTrainingArguments))
-    model_args, dataset_args, training_args = parser.parse_args_into_dataclasses()
+    # model_args, dataset_args, training_args = parser.parse_args_into_dataclasses()
+    model_args, dataset_args, training_args, _ = parser.parse_args_into_dataclasses(return_remaining_strings=True)
     logging.basicConfig(
         format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
         datefmt="%m/%d/%Y %H:%M:%S",

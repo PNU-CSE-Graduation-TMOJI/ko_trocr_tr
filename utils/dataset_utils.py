@@ -42,4 +42,14 @@ def get_dataset(csv_path: os.PathLike, is_sub_char=True) -> Dataset:
 
     dataset = Dataset.from_dict(data_dict)
     dataset = dataset.cast_column(DatasetColumns.pixel_values, Image())
+
+    # RGBA → RGB 변환
+    def convert_rgba_to_rgb(example):
+        img = example[DatasetColumns.pixel_values]
+        if img.mode != "RGB":
+            img = img.convert("RGB")
+        return {DatasetColumns.pixel_values: img}
+
+    dataset = dataset.map(convert_rgba_to_rgb)
+
     return dataset
